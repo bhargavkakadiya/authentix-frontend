@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import * as React from 'react';
+import * as React from "react";
 import {
   RainbowKitProvider,
   getDefaultWallets,
   connectorsForWallets,
-} from '@rainbow-me/rainbowkit';
+} from "@rainbow-me/rainbowkit";
 import {
   argentWallet,
   trustWallet,
   ledgerWallet,
-} from '@rainbow-me/rainbowkit/wallets';
-import { configureChains, createConfig, WagmiConfig } from 'wagmi';
+} from "@rainbow-me/rainbowkit/wallets";
+import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import {
   mainnet,
   polygon,
@@ -19,8 +19,8 @@ import {
   arbitrum,
   zora,
   goerli,
-} from 'wagmi/chains';
-import { publicProvider } from 'wagmi/providers/public';
+} from "wagmi/chains";
+import { publicProvider } from "wagmi/providers/public";
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
@@ -29,7 +29,7 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
     optimism,
     arbitrum,
     zora,
-    ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? [goerli] : []),
+    ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true" ? [goerli] : []),
   ],
   [publicProvider()]
 );
@@ -37,19 +37,19 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
 const projectId = process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || "";
 
 const { wallets } = getDefaultWallets({
-  appName: 'RainbowKit demo',
+  appName: "RainbowKit demo",
   projectId,
   chains,
 });
 
 const demoAppInfo = {
-  appName: 'Rainbowkit Demo',
+  appName: "Rainbowkit Demo",
 };
 
 const connectors = connectorsForWallets([
   ...wallets,
   {
-    groupName: 'Other',
+    groupName: "Other",
     wallets: [
       argentWallet({ projectId, chains }),
       trustWallet({ projectId, chains }),
