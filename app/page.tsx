@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <div className="row mt-4">
         <h1 className="text-4xl tracking-tight font-extrabold text-white-900 sm:text-5xl md:text-6xl">
-          <span>Discover what's</span>
+          <span>Discover what&apos;s</span>
           <span className="text-indigo-600"> happening</span>
           <span> around you</span>
         </h1>
