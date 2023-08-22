@@ -88,7 +88,6 @@ function DisplayTicketsByUser() {
   useEffect(() => {
     fetchNFTsByOwner(address.toString())
       .then((data) => {
-        console.log(data);
         if (data) {
           setNFTs(data.ownedNfts);
         } else {
