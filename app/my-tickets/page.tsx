@@ -21,8 +21,6 @@ const darkTheme = createTheme({
 });
 
 export default function CreateEvent() {
-  // {/* wallet address  */} of connected user
-
   const { address, isConnected } = useAccount();
 
   if (!isConnected) {
@@ -67,13 +65,7 @@ function WalletInfo() {
   const { address, isConnected } = useAccount();
   return (
     <>
-      <div>
-        <h4>My Address: {address}</h4>
-        <br />
-        <h4>
-          {isConnected ? "Connected to wallet" : "Not connected to wallet"}
-        </h4>
-      </div>
+      <h4>My Address: {address}</h4>
     </>
   );
 }
@@ -87,6 +79,7 @@ function DisplayTicketsByUser() {
 
   useEffect(() => {
     if (address) {
+      console.log("Fetching NFTs for address:", address);
       fetchNFTsByOwner(address.toString())
         .then((data) => {
           if (data) {

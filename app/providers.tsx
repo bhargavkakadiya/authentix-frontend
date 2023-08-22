@@ -1,5 +1,3 @@
-"use client";
-
 import * as React from "react";
 import {
   RainbowKitProvider,
@@ -14,24 +12,34 @@ import {
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import {
   mainnet,
-  polygon,
-  optimism,
-  arbitrum,
-  zora,
   goerli,
+  sepolia,
+  polygon,
+  polygonMumbai,
+  arbitrum,
+  arbitrumGoerli,
+  polygonZkEvm,
+  polygonZkEvmTestnet,
 } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
+import { infuraProvider } from "wagmi/providers/infura";
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
     mainnet,
+    goerli,
+    sepolia,
     polygon,
-    optimism,
+    polygonMumbai,
     arbitrum,
-    zora,
-    ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true" ? [goerli] : []),
+    arbitrumGoerli,
+    polygonZkEvm,
+    polygonZkEvmTestnet,
   ],
-  [publicProvider()]
+  [
+    infuraProvider({ apiKey: process.env.INFURA_API_KEY || "" }),
+    publicProvider(),
+  ]
 );
 
 const projectId = process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || "";
