@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useAccount } from "wagmi";
 
 const navItems = [
   {
@@ -12,6 +13,10 @@ const navItems = [
   {
     path: "/create-event",
     name: "Create Event",
+  },
+  {
+    path: "/my-tickets",
+    name: "My Tickets",
   },
 ];
 
@@ -36,7 +41,7 @@ export default function NavBar() {
           );
         })}
         <div className="absolute right-0 top-0 bottom-0 flex items-center">
-            <ConnectButton/>
+          <ConnectButton />
         </div>
       </nav>
     </div>

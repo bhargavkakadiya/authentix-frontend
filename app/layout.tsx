@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import { Providers } from "./providers";
-import NavBar from "../components/NavBar.tsx";
+import NavBar from "../components/NavBar";
 
 function RootLayout({ children }: { children: React.ReactNode }) {
   return (
