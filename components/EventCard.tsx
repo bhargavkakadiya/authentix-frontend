@@ -42,11 +42,11 @@ export default function EventCard() {
     <>
       <Card sx={{ maxWidth: 345 }}>
         <CardContent>
-          <Typography sx={{ fontSize: 24 }} color="text.secondary" gutterBottom>
+          <Typography sx={{ fontSize: 24 }} color="text.primary" gutterBottom>
             Ticket Name: {data?.[0]?.result?.toString()}
           </Typography>
           {data?.[1]?.result && (
-            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+            <Typography sx={{ mb: 1.5 }} color="text.primary">
               Ticket Price:{" "}
               {ethers
                 .formatEther(data[1].result as unknown as ethers.BigNumberish)
