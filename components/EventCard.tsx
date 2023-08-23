@@ -39,7 +39,7 @@ export default function EventCard() {
   if (isLoading) return <>Loading...</>;
 
   if (data?.[0]?.result === undefined || data?.[1]?.result === undefined) {
-    return <>No events found, please try other chains</>;
+    return <>No events found, please try Base Goerli Chain</>;
   }
 
   return (
