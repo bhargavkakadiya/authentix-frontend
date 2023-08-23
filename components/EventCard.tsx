@@ -1,47 +1,64 @@
 import * as React from "react";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+
+import { ethers } from "ethers";
+import { useContractRead, useContractReads } from "wagmi";
+
+import { BigNumber, BigNumberish } from "alchemy-sdk";
+import BuyTicket from "./BuyTicket";
+
+import abiJSON from "../public/abi/contractConcertTicket.json";
+
+const ticketContract = {
+  address: process.env
+    .NEXT_PUBLIC_CONCERT_TICKET_CONTRACT_ADDRESS_BASE as `0x${string}`,
+  abi: abiJSON as any,
+};
 
 export default function EventCard() {
+  const { data, isError, isLoading, error } = useContractReads({
+    contracts: [
+      {
+        ...ticketContract,
+        functionName: "name",
+        args: [],
+      },
+      {
+        ...ticketContract,
+        functionName: "ticketPrice",
+        args: [],
+      },
+    ],
+  });
+
+  if (isLoading) return <>Loading...</>;
+
   return (
     <>
-      <a className="cursor-pointer flex justify-center mb-3" href="#">
-        <div className="bg-gray-100 w-full md:w-1/3 h-52 mx-6 flex flex-col justify-between p-4 hover:shadow-md">
-          <div className="w-full flex justify-between">
-            <p className="text-sm font-semibold text-red-400">
-              20 Dec 2020, 07:00 am
-            </p>
-            <p className="text-sm font-semibold text-red-400">Free Event</p>
-          </div>
-
-          <h1 className="font-black text-lg tracking-wide">
-            The quick brown fox jumps over the lazy dog
-          </h1>
-
-          <div className="text-sm text-gray-500 font-normal max-h-14 leading-7 block overflow-ellipsis overflow-hidden break-words">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </div>
-
-          <div className="w-full flex items-center">
-            <svg
-              className="w-3 h-3 fill-current text-gray-500 mr-2"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor">
-              <path
-                fillRule="evenodd"
-                d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <p className="text-gray-500 font-normal text-sm">John Doe</p>
-          </div>
-        </div>
-      </a>
+      <Card sx={{ maxWidth: 345 }}>
+        <CardContent>
+          <Typography sx={{ fontSize: 24 }} color="text.secondary" gutterBottom>
+            Ticket Name: {data?.[0]?.result?.toString()}
+          </Typography>
+          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+            Ticket Price: {ethers.formatEther(data?.[1]?.result as any)} ETH
+          </Typography>
+          <Typography variant="body2">
+            Event Venue: Vancouver, BC
+            <br />
+            Event Date: 31 Oct 2023, 12 pm
+            <br />
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <BuyTicket></BuyTicket>
+        </CardActions>
+      </Card>
     </>
   );
 }

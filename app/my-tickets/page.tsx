@@ -118,7 +118,7 @@ async function fetchNFTsByOwner(address: string) {
   // Get all the NFTs owned by an address
   //   address to string
   const data = await alchemy.nft.getNftsForOwner(address, {
-    contractAddresses: ["0x102fc17bcb529c90b99039d6ed4cd12bd33f90ed"],
+    contractAddresses: ["0xd399885e1D646433ACbFfAb5ceee90a64d423a12"],
   });
   return data;
 }
