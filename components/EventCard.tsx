@@ -46,7 +46,8 @@ export default function EventCard() {
             Ticket Name: {data?.[0]?.result?.toString()}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            Ticket Price: {ethers.formatEther(data?.[1]?.result as any)} ETH
+            Ticket Price:{" "}
+            {ethers.formatEther(data?.[1]?.result as any).toString()} ETH
           </Typography>
           <Typography variant="body2">
             Event Venue: Vancouver, BC
