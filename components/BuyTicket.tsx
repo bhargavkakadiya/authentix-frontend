@@ -18,8 +18,6 @@ export default function BuyTicket() {
   const { data, isLoading, isSuccess, write, error, isError } =
     useContractWrite(config);
 
-  if (isError) return <>Error: {error?.message}</>;
-
   return (
     <div>
       <Button disabled={!write} onClick={() => write?.()}>
