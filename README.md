@@ -10,7 +10,7 @@
 Head over to our website [AutheNTix.network](https://www.authentix.network) to mint your first concert ticket.
 
 ## Project Demo
-[video link]()
+[video link](https://drive.google.com/file/d/1v5456y20TfjA2VpDT4t7S39BokTmCMLn/view?usp=sharing)
 
 ## Getting Started
 
