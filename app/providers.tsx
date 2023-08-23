@@ -12,30 +12,18 @@ import {
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import {
   mainnet,
-  goerli,
-  sepolia,
-  polygon,
-  polygonMumbai,
-  arbitrum,
-  arbitrumGoerli,
-  polygonZkEvm,
-  polygonZkEvmTestnet,
+  base,
+  baseGoerli,
+  xdc,
+  xdcTestnet,
+  zkSync,
+  zkSyncTestnet,
 } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { infuraProvider } from "wagmi/providers/infura";
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [
-    mainnet,
-    goerli,
-    sepolia,
-    polygon,
-    polygonMumbai,
-    arbitrum,
-    arbitrumGoerli,
-    polygonZkEvm,
-    polygonZkEvmTestnet,
-  ],
+  [mainnet, base, baseGoerli, xdc, xdcTestnet, zkSync, zkSyncTestnet],
   [
     infuraProvider({ apiKey: process.env.INFURA_API_KEY || "" }),
     publicProvider(),
