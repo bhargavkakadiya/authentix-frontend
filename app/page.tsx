@@ -18,7 +18,6 @@ export default function Home() {
       <br />
       <div>
         <EventCard />
-        <EventCard />
       </div>
     </>
   );
